@@ -1,0 +1,15 @@
+.buildpath
+.settings/
+.project
+*.patch
+.idea/
+.git/
+runtime/
+.phpintel/
+.env
+/env/*.pem
+.DS_Store
+.phpunit*
+/Dockerfile
+/docker-compose.yml
+/t.php
