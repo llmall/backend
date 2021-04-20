@@ -21,6 +21,7 @@ Router::get('/favicon.ico', function () {
 
 Router::addGroup('/admin/', function () {
     Router::get('user', 'App\Controller\Admin\LoginController@user');
+    Router::get('menu', 'App\Controller\Admin\PermissionController@index');
     Router::post('add_role', 'App\Controller\Admin\PermissionController@RoleAdd');
     Router::post('add_permission', 'App\Controller\Admin\PermissionController@addPermission');
     Router::post('give_permission', 'App\Controller\Admin\PermissionController@givePermissionTo');
