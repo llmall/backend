@@ -35,4 +35,22 @@ abstract class AbstractController
      * @var ResponseInterface
      */
     protected $response;
+
+    protected function formatError($msg, $code)
+    {
+        return [
+            'status' => 0,
+            'code' => $code,
+            'msg' => $msg,
+        ];
+    }
+
+    protected function formatSuccess($data)
+    {
+        return [
+            'status' => 1,
+            'data' => $data,
+            'msg' => 'success',
+        ];
+    }
 }

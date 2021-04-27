@@ -16,7 +16,7 @@ use Qbhy\HyperfAuth\Annotation\Auth;
 use Hyperf\Utils\Context;
 
 
-class JwtMiddleware implements MiddlewareInterface
+class AdminJwtMiddleware implements MiddlewareInterface
 {
 
     /**

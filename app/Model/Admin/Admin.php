@@ -59,7 +59,11 @@ class Admin extends Model implements Authenticatable
     public static function checkLogin($username, $password)
     {
         $admin = new Admin();
-        $admin->fill(static::query()->where(['name' => $username, 'password' => md5($password)])->first()->toArray());
+        $admin_user = static::query()->where(['name' => $username, 'password' => md5($password)])->first();
+        if(empty($admin_user)){
+            return [];
+        }
+        $admin->fill($admin_user->toArray());
         return $admin;
     }
 

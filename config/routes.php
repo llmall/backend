@@ -19,6 +19,13 @@ Router::get('/favicon.ico', function () {
     return '';
 });
 
+Router::post('/login', 'App\Controller\v1\LoginController@index');
+
+Router::addGroup('/v1/', function () {
+    Router::get('user', 'App\Controller\v1\UserController@index');
+}, ['middleware' => [\App\Middleware\UserJwtMiddleware::class]]);
+
+
 Router::addGroup('/admin/', function () {
     Router::get('user', 'App\Controller\Admin\LoginController@user');
     Router::get('menu', 'App\Controller\Admin\PermissionController@index');
@@ -28,4 +35,4 @@ Router::addGroup('/admin/', function () {
     Router::post('revoke_permission', 'App\Controller\Admin\PermissionController@revokePermission');
     Router::post('assign_role', 'App\Controller\Admin\PermissionController@assignRoles');
     Router::post('remove_role', 'App\Controller\Admin\PermissionController@removeRole');
-}, ['middleware' => [\App\Middleware\JwtMiddleware::class,\App\Middleware\PermissionMiddleware::class]]);
+}, ['middleware' => [\App\Middleware\AdminJwtMiddleware::class,\App\Middleware\PermissionMiddleware::class]]);

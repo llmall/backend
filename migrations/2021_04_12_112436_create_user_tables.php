@@ -16,14 +16,19 @@ class CreateUserTables extends Migration
 
         Schema::create('user', function (Blueprint $table) {
             $table->bigIncrements('uid');
-            $table->string('mobile','11')->comment('手机号');
-            $table->string('name')->default('')->comment('名称');
-            $table->string('wx_openid')->default('')->comment('微信id');
-            $table->double('points')->default(0)->comment('积分');
-            $table->integer('balance')->default(0)->comment('余额');
-            $table->integer('status')->default(1)->comment('用户状态，1开启，2关闭');
-            $table->dateTime('last_login_time')->comment('最后一次登陆时间');
+            $table->string('email','20')->comment('邮箱');
+            $table->string('phone','15')->comment('手机号');
+            $table->string('username')->default('')->comment('用户名');
+            $table->string('password')->default('')->comment('密码');
+            $table->integer('status')->default(0)->comment('状态 1:enable, 0:disable, -1:deleted');
+            $table->string('create_ip_at','12')->comment('创建ip');
+            $table->integer('last_login_at')->default(0)->comment('最后一次登陆时间');
+            $table->string('last_login_ip_at','12')->comment('最后一次登陆时间');
+            $table->integer('login_times')->default(0)->comment('最后一次登陆时间');
             $table->timestamps();
+            $table->index('email','idx_email');
+            $table->index('phone','idx_phone');
+            $table->index('username','idx_username');
         });
 
     }
