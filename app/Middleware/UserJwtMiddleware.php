@@ -34,7 +34,6 @@ class UserJwtMiddleware implements MiddlewareInterface
         $config = config('user_auth');
         $auth = new CustomGuard($config,$this->request);
         $user = $auth->guard()->user();
-        print_r($user);
         if(!$user){
             throw new BusinessException(100);
         }
