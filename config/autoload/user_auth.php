@@ -23,12 +23,12 @@ use Qbhy\SimpleJwt\EncryptAdapters as Encrypter;
 return [
     'default' => [
         'guard' => 'jwt',
-        'provider' => 'user',
+        'provider' => 'User',
     ],
     'guards' => [
         'jwt' => [
             'driver' => Qbhy\HyperfAuth\Guard\JwtGuard::class,
-            'provider' => 'user',
+            'provider' => 'User',
 
             /*
              * 以下是 simple-jwt 配置
@@ -97,11 +97,11 @@ return [
         ],
         'session' => [
             'driver' => Qbhy\HyperfAuth\Guard\SessionGuard::class,
-            'provider' => 'user',
+            'provider' => 'User',
         ],
     ],
     'providers' => [
-        'user' => [
+        'User' => [
             'driver' => \Qbhy\HyperfAuth\Provider\EloquentProvider::class,
             'model' => App\Model\Amall\User::class, //  需要实现 Qbhy\HyperfAuth\Authenticatable 接口
         ],

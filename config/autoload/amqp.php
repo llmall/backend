@@ -13,7 +13,7 @@ return [
     'default' => [
         'host' => 'localhost',
         'port' => 5672,
-        'user' => 'guest',
+        'User' => 'guest',
         'password' => 'guest',
         'vhost' => '/',
         'pool' => [

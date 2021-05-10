@@ -37,7 +37,7 @@ class UserJwtMiddleware implements MiddlewareInterface
         if(!$user){
             throw new BusinessException(100);
         }
-        $serverRequest = $serverRequest->withAttribute('user', $user);
+        $serverRequest = $serverRequest->withAttribute('User', $user);
         Context::set(ServerRequestInterface::class, $serverRequest);
         return $handler->handle($serverRequest);
     }

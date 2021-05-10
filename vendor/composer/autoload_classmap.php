@@ -30,6 +30,8 @@ return array(
     'App\\Model\\Amall\\User' => $baseDir . '/app/Model/Amall/User.php',
     'App\\Model\\Model' => $baseDir . '/app/Model/Model.php',
     'App\\Process\\AsyncQueueConsumer' => $baseDir . '/app/Process/AsyncQueueConsumer.php',
+    'App\\Request\\User\\LoginRequest' => $baseDir . '/app/Request/User/LoginRequest.php',
+    'App\\Request\\User\\RegisterRequest' => $baseDir . '/app/Request/User/RegisterRequest.php',
     'App\\Service\\CustomGuard' => $baseDir . '/app/Service/CustomGuard.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',

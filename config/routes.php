@@ -27,7 +27,7 @@ Router::addGroup('/v1/', function () {
 
 
 Router::addGroup('/admin/', function () {
-    Router::get('user', 'App\Controller\Admin\LoginController@user');
+    Router::get('user', 'App\Controller\Admin\LoginController@User');
     Router::get('menu', 'App\Controller\Admin\PermissionController@index');
     Router::post('add_role', 'App\Controller\Admin\PermissionController@RoleAdd');
     Router::post('add_permission', 'App\Controller\Admin\PermissionController@addPermission');

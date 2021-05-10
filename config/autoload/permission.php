@@ -3,7 +3,7 @@
 return [
     //model设置
     'models' => [
-        'user' => App\Model\Admin\Admin::class,
+        'User' => App\Model\Admin\Admin::class,
         'permission' => Donjan\Permission\Models\Permission::class,
         'role' => Donjan\Permission\Models\Role::class,
     ],

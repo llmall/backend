@@ -12,7 +12,7 @@ class UserController extends AbstractController
      */
     public function index()
     {
-        $user = $this->request->getAttribute('user');
+        $user = $this->request->getAttribute('User');
         return 'hello '.$user->username ;
     }
 

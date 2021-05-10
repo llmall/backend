@@ -6,6 +6,7 @@ namespace App\Controller\v1;
 
 use App\Controller\AbstractController;
 use App\Model\Amall\User;
+use App\Request\User\LoginRequest;
 use App\Service\CustomGuard;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
@@ -22,16 +23,18 @@ class LoginController extends AbstractController
 {
 
     /**
-     * @PostMapping(path="/user/login")
+     * @PostMapping(path="/User/login")
+     * @param LoginRequest $request
      * @return array
      */
-    public function index()
+    public function index(LoginRequest $request)
     {
-        $username = $this->request->input('username');
-        $password = $this->request->input('password');
+        $valid_data = $request->validated();
+        $username = $valid_data['username'];
+        $password = $valid_data['password'];
         $user = User::checkLogin($username, $password);
         $config = config('user_auth');
-        $auth = new CustomGuard($config,$this->request);
+        $auth = new CustomGuard($config,$request);
         if(!empty($user)){
             return $this->formatSuccess(['token' => $auth->login($user)]);
         }else{

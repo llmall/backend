@@ -16,7 +16,7 @@ class User extends Model implements Authenticatable
      *
      * @var string
      */
-    protected $table = 'user';
+    protected $table = 'account_user';
 
     /**
      * The attributes that are mass assignable.

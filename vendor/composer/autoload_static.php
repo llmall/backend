@@ -605,6 +605,8 @@ class ComposerStaticInit32f1ad11ddb4bfafc0fae6aa6a905d2e
         'App\\Model\\Amall\\User' => __DIR__ . '/../..' . '/app/Model/Amall/User.php',
         'App\\Model\\Model' => __DIR__ . '/../..' . '/app/Model/Model.php',
         'App\\Process\\AsyncQueueConsumer' => __DIR__ . '/../..' . '/app/Process/AsyncQueueConsumer.php',
+        'App\\Request\\User\\LoginRequest' => __DIR__ . '/../..' . '/app/Request/User/LoginRequest.php',
+        'App\\Request\\User\\RegisterRequest' => __DIR__ . '/../..' . '/app/Request/User/RegisterRequest.php',
         'App\\Service\\CustomGuard' => __DIR__ . '/../..' . '/app/Service/CustomGuard.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
