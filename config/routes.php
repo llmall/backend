@@ -21,7 +21,7 @@ Router::get('/favicon.ico', function () {
 
 Router::post('/login', 'App\Controller\v1\LoginController@index');
 
-Router::addGroup('/v1/', function () {
+Router::addGroup('/V1/', function () {
     Router::get('user', 'App\Controller\v1\UserController@index');
 }, ['middleware' => [\App\Middleware\UserJwtMiddleware::class]]);
 

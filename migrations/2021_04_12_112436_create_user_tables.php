@@ -24,8 +24,8 @@ class CreateUserTables extends Migration
             $table->integer('status')->default(0)->comment('状态 1:enable, 0:disable, -1:deleted');
             $table->string('create_ip_at','12')->comment('创建ip');
             $table->integer('last_login_at')->default(0)->comment('最后一次登陆时间');
-            $table->string('last_login_ip_at','12')->comment('最后一次登陆时间');
-            $table->integer('login_times')->default(0)->comment('最后一次登陆时间');
+            $table->string('last_login_ip_at','12')->comment('最后一次登陆ip');
+            $table->integer('login_times')->default(0)->comment('登陆时间');
             $table->timestamps();
             $table->index('email','idx_email');
             $table->index('phone','idx_phone');

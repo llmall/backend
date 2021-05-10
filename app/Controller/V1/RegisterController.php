@@ -2,37 +2,34 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\v1;
+namespace App\Controller\V1;
 
 use App\Controller\AbstractController;
+use App\Helpers\Helper;
 use App\Model\Amall\User;
-use App\Request\User\LoginRequest;
+use App\Request\User\RegisterRequest;
 use App\Service\CustomGuard;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\PostMapping;
-use Hyperf\Utils\ApplicationContext;
-use Hyperf\Contract\ConfigInterface;
-use Qbhy\HyperfAuth\AuthManager;
 
 /**
  * @Controller
- * Class LoginController
+ * Class RegisterController
  */
-class LoginController extends AbstractController
+class RegisterController extends AbstractController
 {
-
     /**
-     * @PostMapping(path="/User/login")
-     * @param LoginRequest $request
+     * @PostMapping(path="/user/register")
+     * @param RegisterRequest $request
      * @return array
      */
-    public function index(LoginRequest $request)
+    public function index(RegisterRequest $request)
     {
         $valid_data = $request->validated();
-        $username = $valid_data['username'];
-        $password = $valid_data['password'];
-        $user = User::checkLogin($username, $password);
+        print_r(Helper::getip($request));
+        $valid_data['create_ip_at'] = $valid_data['last_login_ip_at'] = Helper::getip($request);
+        $user = User::registerUser($valid_data);
         $config = config('user_auth');
         $auth = new CustomGuard($config,$request);
         if(!empty($user)){
@@ -40,10 +37,5 @@ class LoginController extends AbstractController
         }else{
             return $this->formatError('登陆失败',301);
         }
-
     }
-
-
-
-
 }
