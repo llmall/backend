@@ -27,7 +27,6 @@ class RegisterController extends AbstractController
     public function index(RegisterRequest $request)
     {
         $valid_data = $request->validated();
-        print_r(Helper::getip($request));
         $valid_data['create_ip_at'] = $valid_data['last_login_ip_at'] = Helper::getip($request);
         $user = User::registerUser($valid_data);
         $config = config('user_auth');
@@ -35,7 +34,7 @@ class RegisterController extends AbstractController
         if(!empty($user)){
             return $this->formatSuccess(['token' => $auth->login($user)]);
         }else{
-            return $this->formatError('登陆失败',301);
+            return $this->formatError('注册失败',301);
         }
     }
 }

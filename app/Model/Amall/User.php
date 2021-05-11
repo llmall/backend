@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Model\Amall;
 
-use App\Helpers\Helper;
 use Donjan\Permission\Traits\HasRoles;
 use Hyperf\DbConnection\Db;
 use Qbhy\HyperfAuth\Authenticatable;
@@ -90,13 +89,27 @@ class User extends Model implements Authenticatable
     {
         $user = new User();
         $register_data['password'] = md5($register_data['password']);
-        $valid_data['status'] = self::STATUS['ENABLE'];
-        $valid_data['last_login_at'] = time();
-        $user_res = $user->fill($register_data)->save();
-        if (!$user_res) {
-            return false;
+        $register_data['status'] = self::STATUS['ENABLE'];
+        $register_data['last_login_at'] = time();
+        Db::beginTransaction();
+        try {
+            $obj = new static($register_data);
+            if ($obj->save()) {
+                $register_data['uid'] = $obj->id;
+            }
+            $uid = $register_data['uid'];
+            if (!$uid) {
+                throw new \Exception('注册用户添加用户异常');
+            }
+            $member_res = Member::createMember($uid, $register_data['username']);
+            if (!$member_res) {
+                throw new \Exception('注册用户添加用户资料异常');
+            }
+            Db::commit();
+        } catch (\Exception $exception) {
+            Db::rollBack();
         }
-        return $user;
+        return $user->fill($register_data);
     }
 
 }

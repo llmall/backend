@@ -49,12 +49,12 @@ class CreateUserTables extends Migration
         });
 
         //账户信息
-        Schema::create('skr_member', function (Blueprint $table) {
+        Schema::create('member', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('uid')->default(0)->comment('账号id');
             $table->string('nickname','60')->default('')->comment('昵称');
             $table->string('avatar','255')->default('')->comment('头像');
-            $table->enum('gender',['male','female','unknow'])->default('unknow')->comment('性别');
+            $table->enum('gender',['male','female','unknown'])->default('unknown')->comment('性别 0:女性 1:男性');
             $table->tinyInteger('role')->default(0)->comment('角色 0:普通用户 1:vip');
             $table->timestamps();
             $table->index('uid','idx_uid');
@@ -72,6 +72,6 @@ class CreateUserTables extends Migration
     {
         Schema::drop('account_user');
         Schema::drop('account_platform');
-        Schema::drop('skr_member');
+        Schema::drop('member');
     }
 }

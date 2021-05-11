@@ -16,7 +16,8 @@ return [
             App\Exception\Handler\AppExceptionHandler::class,
             \Qbhy\HyperfAuth\AuthExceptionHandler::class,
             App\Exception\Handler\UnauthorizedExceptionHandler::class,
-            \Hyperf\Validation\ValidationExceptionHandler::class,
+//            \Hyperf\Validation\ValidationExceptionHandler::class,
+            App\Exception\Handler\ValidationExceptionHandler::class,
         ],
     ],
 ];
