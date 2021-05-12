@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Helpers;
 
 use App\Helpers\Code;
+use App\Service\Code\EmailService;
+use App\Service\Code\PhoneService;
 
 class Helper
 {
@@ -91,6 +93,24 @@ class Helper
             return $res['remote_addr'];
         }
 
+    }
+
+    /**
+     * 获取字符串类型
+     * @param $account
+     * @param $is_class
+     * @return string
+     */
+    public static function getAccountType($account, $is_class = false): string
+    {
+        if (preg_match('/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i', $account)) {
+            $type = $is_class ? EmailService::class : 'email';
+        } elseif (preg_match('/^1[34578]\d{9}$/', $account)) {
+            $type = $is_class ? PhoneService::class : 'phone';
+        } else {
+            $type = 'username';
+        }
+        return $type;
     }
 
 }

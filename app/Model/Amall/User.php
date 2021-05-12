@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Amall;
 
+use App\Helpers\Helper;
 use Donjan\Permission\Traits\HasRoles;
 use Hyperf\DbConnection\Db;
 use Qbhy\HyperfAuth\Authenticatable;
@@ -62,10 +63,11 @@ class User extends Model implements Authenticatable
     }
 
 
-    public static function checkLogin($username, $password, $last_login_ip_at)
+    public static function checkLogin($account, $password, $last_login_ip_at)
     {
         $user = new User();
-        $user_info = static::query()->where(['username' => $username, 'password' => md5($password)])->first();
+        $account_type = Helper::getAccountType($account);
+        $user_info = static::query()->where([$account_type => $account, 'password' => md5($password)])->first();
         if (empty($user_info)) {
             return [];
         }

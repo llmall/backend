@@ -31,10 +31,10 @@ class LoginController extends AbstractController
     public function index(LoginRequest $request)
     {
         $valid_data = $request->validated();
-        $username = $valid_data['username'];
+        $account = $valid_data['account'];
         $password = $valid_data['password'];
         $last_login_ip_at = Helper::getip($request);
-        $user = User::checkLogin($username, $password, $last_login_ip_at);
+        $user = User::checkLogin($account, $password, $last_login_ip_at);
         $config = config('user_auth');
         $auth = new CustomGuard($config,$request);
         if(!empty($user)){

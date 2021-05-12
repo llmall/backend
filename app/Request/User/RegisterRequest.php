@@ -21,10 +21,10 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|unique:account_user|email',
-            'phone' => 'required|unique:account_user|regex:/^1[34578]\d{9}$/',
-            'username' => 'required',
+            'account' => 'required',
             'password' => 'required',
+            'repeat_pass' => 'required|password_confirmation',
+            'code' => 'required',
         ];
     }
 }

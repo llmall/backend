@@ -8,10 +8,12 @@ use App\Controller\AbstractController;
 use App\Helpers\Helper;
 use App\Model\Amall\User;
 use App\Request\User\RegisterRequest;
+use App\Service\Code\PhoneService;
 use App\Service\CustomGuard;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\PostMapping;
+use Hyperf\Utils\ApplicationContext;
 
 /**
  * @Controller
@@ -36,5 +38,23 @@ class RegisterController extends AbstractController
         }else{
             return $this->formatError('注册失败',301);
         }
+    }
+
+    /**
+     * @PostMapping(path="/sendCode")
+     * @param  $account
+     * @return array
+     * @throws \Exception
+     */
+    public function sendCode($account)
+    {
+        $account = $this->request->input('account','18301676657');
+        $obj = Helper::getAccountType($account, true);
+        if((new $obj)->sendMsg($account)){
+            return $this->formatSuccess('发送成功');
+        }else{
+            return $this->formatError('发送失败',301);
+        }
+
     }
 }
